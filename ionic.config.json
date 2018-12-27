@@ -1,5 +1,7 @@
 {
   "name": "lectorcaravana",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

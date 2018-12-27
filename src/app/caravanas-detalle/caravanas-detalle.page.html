@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/(caravanas:caravanas)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Caravana - Detalle</ion-title>
+    <ion-buttons slot="end">
+        <ion-icon (click)="grabar()" size="large" name="md-archive"></ion-icon>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label>Caravana:</ion-label>
+      <ion-input required type="text" placeholder="Caravana" [(ngModel)]="caravana.codigo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Código</ion-label>
+      <ion-input required type="text" placeholder="Código" [(ngModel)]="caravana.codigonfc"></ion-input>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

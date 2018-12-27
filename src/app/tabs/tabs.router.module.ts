@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
+import { CaravanasPage } from '../caravanas/caravanas.page';
+import { CaravanasDetallePage } from '../caravanas-detalle/caravanas-detalle.page';
+import { TareasPage } from '../tareas/tareas.page';
+import { TareasDetallePage } from '../tareas-detalle/tareas-detalle.page';
 
 const routes: Routes = [
   {
@@ -9,42 +13,39 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        children: [
-          {
-            path: '',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule'
-          }
-        ]
+        path: 'caravanas',
+        outlet:'caravanas',
+        component:CaravanasPage
       },
       {
-        path: 'tab2',
-        children: [
-          {
-            path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
-          }
-        ]
+        path: 'caravanas-detalle/:id',
+        outlet:'caravanas',
+        component:CaravanasDetallePage
+      }, 
+      {
+        path: 'tareas',
+        outlet:'tareas',
+        component:TareasPage
+      },
+      {
+        path: 'tareas-detalle/:id',
+        outlet:'tareas',
+        component:TareasDetallePage
       },
       {
         path: 'tab3',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../tareas/tareas.module#TareasPageModule'
           }
         ]
-      },
-      {
-        path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/(caravanas:caravanas)',
     pathMatch: 'full'
   }
 ];
