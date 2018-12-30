@@ -7,15 +7,6 @@
 <ion-content padding>
   <ion-list>
  
-    <ng-container *ngIf="!caravanas || caravanas.length == 0">
-      <div *ngFor="let n of [0,1,2]" padding>
-        <ion-skeleton-text></ion-skeleton-text>
-        <p>
-          <ion-skeleton-text class="fake-skeleton"></ion-skeleton-text>
-        </p>
-      </div>
-    </ng-container>
- 
     <ion-item-sliding *ngFor="let item of caravanas">
       <ion-item lines="inset" (click)="gotoDetail(item.codigo)">
         <ion-label>

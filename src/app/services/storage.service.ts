@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Observable } from 'rxjs';
-
 
 export interface Caravana {
   codigo: string;
   codigonfc: string;
 }
 
+export interface Tarea {
+  id?: any;
+  createdAt: number;
+  tarea: string;
+  descripcion:string;
+  caravanas:any
+}
 @Injectable({
   providedIn: 'root'
 })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Caravana,StorageService} from '../services/storage.service'
+import { Caravana } from '../services/storage.service'
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
@@ -44,13 +44,13 @@ export class CaravanasDetallePage implements OnInit {
     }
   }
   loadCaravana(key){
-    this.storage.get(key).then ((val)=>{
+    this.storage.get('CAR_'+key).then ((val)=>{
       this.caravana=val;
     })
     }
 
   grabar(){
-    this.storage.set(this.caravana.codigo,this.caravana);
+    this.storage.set('CAR_'+this.caravana.codigo,this.caravana);
     this.router.navigateByUrl('/tabs/(caravanas:caravanas)');
   }
 

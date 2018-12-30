@@ -22,13 +22,16 @@ export class CaravanasPage implements OnInit {
 loadCaravanas(){
   this.caravanas=[];
   this.storage.forEach((value,key,index) => {
-    this.caravanas.push(value) ;
+    if (key.substring(0,4)=="CAR_"){
+      this.caravanas.push(value) ;
+    }
+    
    }).then(()=>{})
 
   }
 
   remove(item) {
-    this.storage.remove(item.codigo);
+    this.storage.remove('CAR_'+item.codigo);
     this.loadCaravanas();
   }
 

@@ -1,9 +1,42 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>tareas-detalle</ion-title>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/(tareas:tareas)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tarea - Detalle</ion-title>
+    <ion-buttons slot="end">
+        <ion-icon (click)="grabar()" size="large" name="md-archive"></ion-icon>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
+ 
 <ion-content padding>
-
+    <ion-list lines="full">
+        <ion-item>
+          <ion-label>Fecha:</ion-label>
+          <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="tarea.createdAt"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tarea</ion-label>
+          <ion-select placeholder="Tarea" [(ngModel)]="tarea.tarea">
+            <ion-select-option value="Vacunar">Vacunar</ion-select-option>
+            <ion-select-option value="Yerra">Yerra</ion-select-option>
+            <ion-select-option value="Desparasitar">Desparasitar</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-textarea placeholder="Descripción" [(ngModel)]="tarea.descripcion"></ion-textarea>
+        </ion-item>        
+      </ion-list>
+    
+    <ion-list lines="full">
+      <ion-item *ngFor="let item of tarea.caravanas">
+        <ion-item lines="inset">
+          <ion-label>
+            {{ item.codigo }}
+          </ion-label>
+        </ion-item>
+      </ion-item>
+    </ion-list>
 </ion-content>
