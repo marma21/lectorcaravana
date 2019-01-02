@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { NFC, Ndef } from '@ionic-native/nfc/ngx';
 import { ToastController } from '@ionic/angular';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-tareas-detalle',
@@ -28,7 +29,8 @@ export class TareasDetallePage implements OnInit {
     private storage:Storage,
     public route: ActivatedRoute,
     private router:Router,
-    private nfc: NFC) { }
+    private nfc: NFC,
+    private socialSharing: SocialSharing,) { }
 
   ngOnInit() {
     this.tareaid=this.route.snapshot.params.id;
@@ -41,9 +43,13 @@ export class TareasDetallePage implements OnInit {
       }, (err) => {
         this.presentToast('Error al activar NFC'+err,'danger',3000,top);
       }).subscribe((event) => {
-        this.presentToast('Leido!!','warning',1000,'middle');
-        //this.caravana.codigonfc=this.nfc.bytesToHexString(event.tag.id);      
-      this.tarea.caravanas.push(this.lista_caravanas.find(x=>x.codigonfc==this.nfc.bytesToHexString(event.tag.id)));
+        //this.caravana.codigonfc=this.nfc.bytesToHexString(event.tag.id);
+      if (this.lista_caravanas.find(x=>x.codigonfc==this.nfc.bytesToHexString(event.tag.id))===undefined){
+          this.presentToast('El código no encontrado '+ this.nfc.bytesToHexString(event.tag.id),'danger',3000,top);
+        }
+        else{ 
+          this.tarea.caravanas.push(this.lista_caravanas.find(x=>x.codigonfc==this.nfc.bytesToHexString(event.tag.id)));
+        }
       });
     }
   }
@@ -66,7 +72,7 @@ export class TareasDetallePage implements OnInit {
     
   grabar(){
     this.storage.set(this.tarea.id,this.tarea);
-    this.router.navigateByUrl('/tabs/(tareas:tareas)');
+    //this.router.navigateByUrl('/tabs/(tareas:tareas)');
   }
 
   async presentToast(message,color,duracion:number,position) {
@@ -78,4 +84,14 @@ export class TareasDetallePage implements OnInit {
     });
     toast.present();
   }
+  
+  sendWS(){
+    this.grabar();
+
+    let mensaje = "*Tarea:* "+ this.tarea.tarea+"\r\n"+"*Descripcion:* "+ this.tarea.descripcion+"\r\n*Caravanas:* "+
+    this.tarea.caravanas.map(port => port.codigo).join('\r\n');
+    this.socialSharing.shareViaWhatsApp(mensaje).then().catch()
+  }
+
+
 }

@@ -16,8 +16,11 @@ export class CaravanasDetallePage implements OnInit {
 
   caravana: Caravana = {
     codigo:"",
-    codigonfc:""
+    codigonfc:"",
+    estado:""
   };
+  tareas=[];
+  lista_tareas=[];
   caravanaid:string;
   constructor( 
     public toastController: ToastController,
@@ -46,7 +49,14 @@ export class CaravanasDetallePage implements OnInit {
   loadCaravana(key){
     this.storage.get('CAR_'+key).then ((val)=>{
       this.caravana=val;
-    })
+      this.storage.forEach((value,key,index) => {
+        if (key.substring(0,4)=="TAR_"){
+          if(value.caravanas.find(x=>x.codigo==this.caravana.codigo)!=undefined){
+            this.tareas.push(value);
+          }
+        }
+       }).then(()=>{})
+      })
     }
 
   grabar(){

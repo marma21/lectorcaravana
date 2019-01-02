@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { NFC } from '@ionic-native/nfc/ngx';
+import {SocialSharing} from '@ionic-native/social-sharing/ngx';
 
 
 
@@ -28,6 +29,7 @@ import { NFC } from '@ionic-native/nfc/ngx';
     StatusBar,
     SplashScreen,
     NFC,
+    SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

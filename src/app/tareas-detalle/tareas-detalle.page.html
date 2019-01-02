@@ -5,9 +5,10 @@
     </ion-buttons>
     <ion-title>Tarea - Detalle</ion-title>
     <ion-buttons slot="end">
-        <ion-icon (click)="grabar()" size="large" name="md-archive"></ion-icon>
+       <ion-icon (click)="sendWS()" color="success" size="large" name="logo-whatsapp"></ion-icon>
+       <ion-icon (click)="grabar()" size="large" name="md-archive"></ion-icon>
   </ion-buttons>
-  </ion-toolbar>
+</ion-toolbar>
 </ion-header>
  
 <ion-content padding>
@@ -21,11 +22,12 @@
           <ion-select placeholder="Tarea" [(ngModel)]="tarea.tarea">
             <ion-select-option value="Vacunar">Vacunar</ion-select-option>
             <ion-select-option value="Yerra">Yerra</ion-select-option>
+            <ion-select-option value="Cargar">Cargar</ion-select-option>
             <ion-select-option value="Desparasitar">Desparasitar</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Descripción</ion-label>
+          <ion-label position="stacked">Descripción</ion-label>
           <ion-textarea placeholder="Descripción" [(ngModel)]="tarea.descripcion"></ion-textarea>
         </ion-item>        
       </ion-list>
@@ -33,9 +35,9 @@
     <ion-list lines="full">
       <ion-item *ngFor="let item of tarea.caravanas">
         <ion-item lines="inset">
-          <ion-label>
-            {{ item.codigo }}
-          </ion-label>
+            <ion-text color="dark">
+                <h5>{{ item.codigo }}</h5>
+            </ion-text>
         </ion-item>
       </ion-item>
     </ion-list>

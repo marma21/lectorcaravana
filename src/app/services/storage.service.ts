@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 
 export interface Caravana {
   codigo: string;
+  estado:string;
   codigonfc: string;
 }
 
