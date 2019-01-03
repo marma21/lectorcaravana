@@ -11,7 +11,8 @@ import { CaravanasPageModule } from '../caravanas/caravanas.module';
 import { CaravanasDetallePageModule } from '../caravanas-detalle/caravanas-detalle.module';
 import { TareasPageModule } from '../tareas/tareas.module';
 import { TareasDetallePageModule } from '../tareas-detalle/tareas-detalle.module';
-
+import { ProgramadaPageModule} from '../programada/programada.module';
+import {ProgramadaDetallePageModule} from '../programada-detalle/programada-detalle.module';
 
 @NgModule({
   imports: [
@@ -22,7 +23,9 @@ import { TareasDetallePageModule } from '../tareas-detalle/tareas-detalle.module
     CaravanasPageModule,
     CaravanasDetallePageModule,
     TareasPageModule,
-    TareasDetallePageModule
+    TareasDetallePageModule,
+    ProgramadaPageModule,
+    ProgramadaDetallePageModule
   ],
   declarations: [TabsPage]
 })

@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-title>Programacion</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-list>
+      <ion-item-sliding *ngFor="let item of tareas">
+        <ion-item lines="inset" (click)="gotoDetail(item.id)">
+          <ion-label>
+            {{ item.tarea }}
+            <b>{{ item.descripcion}}</b>
+          </ion-label>
+          <ion-note slot="end" color="primary">{{ item.createdAt | date: 'dd/MM/yyyy'}}</ion-note>
+        </ion-item>
+   
+        <ion-item-options side="end">
+          <ion-item-option (click)="remove(item)" color="danger">
+            <ion-icon name="ios-trash" slot="end"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+   
+    </ion-list>
+   
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="tertiary" (click)="gotoDetail()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
+  
