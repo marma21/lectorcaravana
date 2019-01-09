@@ -1,12 +1,12 @@
 <ion-header>
     <ion-toolbar color="tertiary">
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="/tabs/(programada:programada)"></ion-back-button>
+        <ion-back-button (click)="grabar()" [disabled]="!formgroup.valid" defaultHref="/tabs/(programada:programada)"></ion-back-button>
       </ion-buttons>
       <ion-title>Programación - Detalle</ion-title>
       <ion-buttons slot="end">
-         <ion-icon (click)="sendWS()" color="success" size="large" name="logo-whatsapp"></ion-icon>
-         <ion-icon (click)="grabar()" size="large" name="md-archive"></ion-icon>
+         <ion-icon (click)="presentActionSheet()" size="large" name="share"></ion-icon>
+        <!--  <ion-icon (click)="grabar()" size="large" name="md-archive"></ion-icon> -->
     </ion-buttons>
   </ion-toolbar>
   </ion-header>
@@ -33,11 +33,11 @@
         </ion-list>
         <ion-item>
             <ion-label position="stacked">Caravanas</ion-label>
-            <ionic-selectable [(ngModel)]="tareas.caravanas" itemValueField="codigo" itemTextField="cofigo" [items]="caravanas"
+            <ionic-selectable [(ngModel)]="tarea.caravanas" itemValueField="codigo" itemTextField="codigo" [items]="lista_caravanas"
               [canSearch]="true" [canClear]="true" [isMultiple]="true" (onChange)="caravanasChange($event)">
               <ng-template ionicSelectableValueTemplate let-productos="value">
                 <div class="ionic-selectable-value-item">
-                  {{codigo}}
+                  {{formatCaravanas(codigo)}}
                 </div>
               </ng-template>
             </ionic-selectable>
